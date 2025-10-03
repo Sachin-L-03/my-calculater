@@ -164,3 +164,34 @@ jobs:
         with:
           name: security-report
           path: security_report.json
+
+  # Deployment stage: package source and artifacts
+  deploy:
+    runs-on: ubuntu-latest
+    needs: security
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download coverage artifact (if present)
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-html
+          path: artifacts/coverage-html
+        continue-on-error: true
+
+      - name: Download lint report (if present)
+        uses: actions/download-artifact@v4
+        with:
+          name: lint-report
+          path: artifacts/lint
+        continue-on-error: true
+
+      - name: Download security report (if present)
+        uses: actions/download-artifact@v4
+        with:
+          name: security-report
+          path: artifacts/security
+        continue-on-error: true
+
+      - name: "Simple package: compile, zip and uploa

@@ -1,8 +1,10 @@
 import pytest
 from src.calculator import add, subtract, multiply, divide, power, square_root
 
+
 class TestBasicOperations:
     """Test basic addition and subtraction operations."""
+
     def test_add_positive_numbers(self):
         assert add(2, 3) == 5
 
@@ -15,8 +17,10 @@ class TestBasicOperations:
     def test_subtract_negative_numbers(self):
         assert subtract(-5, -2) == -3
 
+
 class TestMultiplyDivide:
     """Test multiplication and division operations."""
+
     def test_multiply_positive_numbers(self):
         """Test multiplying positive numbers"""
         assert multiply(3, 4) == 12
@@ -47,6 +51,7 @@ class TestMultiplyDivide:
         with pytest.raises(ValueError, match="Cannot divide by zero"):
             divide(10, 0)
 
+
 class TestAdvancedOperations:
     """Test power and square root operations"""
 
@@ -68,6 +73,7 @@ class TestAdvancedOperations:
 
     def test_square_root_negative_raises_error(self):
         """Test that square root of negative raises ValueError"""
-        with pytest.raises(ValueError, match="Cannot calculate the square root of a negative number"):
+        with pytest.raises(
+            ValueError, match="Cannot calculate the square root of a negative number"
+        ):
             square_root(-4)
-
